@@ -8,16 +8,18 @@
 </head>
 <body class="menu-body">
     <div class="container menu-container">
-        <h2>👤 Identifikasi Pengguna</h2>
-        <input type="text" id="namaUser" class="input-nama" placeholder="Masukkan nama Anda..." autocomplete="off">
+        <h2>📌 Menu Utama</h2>
+        <input type="text" id="namaUser" class="input-nama" placeholder="Masukkan nama Anda" autocomplete="off">
         
         <div class="tombol-menu-container">
-            <button class="tombol-aksi tombol-calc1" onclick="goTo('calculator1.html')">
-                🧮 Kalkulator Standar
-            </button>
-            <button class="tombol-aksi tombol-calc2" onclick="goTo('kalkulator2.html')">
-                📒 Buku Kas Keuangan
-            </button>
+            <button class="tombol-aksi" onclick="goTo('index.html')">🏠 Beranda</button>
+            <button class="tombol-aksi" onclick="goTo('tentang-akuntansi.html')">📖 Tentang Akuntansi</button>
+            <button class="tombol-aksi" onclick="goTo('data-pemasukan.html')">💚 Data Pemasukan</button>
+            <button class="tombol-aksi" onclick="goTo('data-pengeluaran.html')">❤️ Data Pengeluaran</button>
+            <button class="tombol-aksi" onclick="goTo('laporan.html')">📊 Laporan</button>
+            <button class="tombol-aksi" onclick="goTo('kontak.html')">📞 Kontak</button>
+            <button class="tombol-aksi" onclick="goTo('calculator1.html')">🧮 Kalkulator Standar</button>
+            <button class="tombol-aksi" onclick="goTo('kalkulator2.html')">📒 Buku Kas Keuangan</button>
         </div>
         <button class="back-home" onclick="location.href='index.html'">🏠 Kembali ke Beranda</button>
     </div>
