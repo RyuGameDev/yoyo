@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Keuangan & Pencatatan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="calc2-body">
+    <div class="container calc2-container">
+        <div class="calc2-header">
+            <h1>💸 Buku Kas Yoyo 💸</h1>
+            <button class="back-btn" onclick="location.href='menu.html'">◀ Kembali ke Menu</button>
+        </div>
+        <div class="pengaturan-teks">
+            <label>🔤 Ukuran Teks:</label>
+            <button id="teksKecil">Kecil</button>
+            <button id="teksSedang">Sedang</button>
+            <button id="teksBesar">Besar</button>
+        </div>
+        <div class="form-catatan">
+            <h3>📝 Tambah Transaksi</h3>
+            <div class="form-row">
+                <select id="jenisTransaksi">
+                    <option value="pemasukan">💚 Pemasukan</option>
+                    <option value="pengeluaran">❤️ Pengeluaran</option>
+                    <option value="pembelian">🛍️ Pembelian</option>
+                </select>
+                <input type="text" id="deskripsi" placeholder="Deskripsi (contoh: gaji, makan, baju)" autocomplete="off">
+            </div>
+            <div class="form-row">
+                <input type="number" id="nominal" placeholder="Nominal (Rp)" autocomplete="off">
+                <input type="date" id="tanggal">
+                <select id="bulan">
+                    <option value="">Pilih Bulan</option>
+                    <option>Januari</option><option>Februari</option><option>Maret</option>
+                    <option>April</option><option>Mei</option><option>Juni</option>
+                    <option>Juli</option><option>Agustus</option><option>September</option>
+                    <option>Oktober</option><option>November</option><option>Desember</option>
+                </select>
+            </div>
+            <button id="tambahTransaksi" class="btn-tambah">➕ Tambah Catatan</button>
+        </div>
+        <div class="daftar-transaksi">
+            <h3>📋 Riwayat Pencatatan</h3>
+            <div class="filter-bulan">
+                <label>Filter Bulan: </label>
+                <select id="filterBulan">
+                    <option value="semua">Semua Bulan</option>
+                    <option>Januari</option><option>Februari</option><option>Maret</option>
+                    <option>April</option><option>Mei</option><option>Juni</option>
+                    <option>Juli</option><option>Agustus</option><option>September</option>
+                    <option>Oktober</option><option>November</option><option>Desember</option>
+                </select>
+                <button id="exportExcel" class="btn-export">📎 Export ke Excel</button>
+            </div>
+            <div id="listTransaksi" class="list-transaksi"></div>
+            <div class="total-saldo">💰 Total Saldo: <span id="totalSaldo">0</span> IDR</div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // manajemen transaksi keuangan
+        let transaksi = JSON.parse(localStorage.getItem('yoyo_keuangan')) || [];
+        function renderTransaksi() {
+            const filterBulan = document.getElementById('filterBulan').value;
+            let filtered = transaksi;
+            if(filterBulan !== 'semua') {
+                filtered = transaksi.filter(t => t.bulan === filterBulan);
+            }
+            const container = document.getElementById('listTransaksi');
+            if(filtered.length === 0) {
+                container.innerHTML = '<div class="empty-state">✨ Belum ada catatan, tambah yuk! ✨</div>';
+                document.getElementById('totalSaldo').innerText = hitungSaldo(filtered);
+                return;
+            }
+            let html = '<table class="tabel-keuangan"><thead><tr><th>Tanggal</th><th>Bulan</th><th>Jenis</th><th>Deskripsi</th><th>Nominal (Rp)</th><th>Aksi</th></tr></thead><tbody>';
+            filtered.forEach((item, idx) => {
+                const originalIdx = transaksi.findIndex(t => t.id === item.id);
+                html += `<tr>
+                    <td>${item.tanggal}</td>
+                    <td>${item.bulan}</td>
+                    <td>${item.jenis}</td>
+                    <td>${item.deskripsi}</td>
+                    <td>${formatRupiah(item.nominal)}</td>
+                    <td><button class="hapus-transaksi" data-id="${item.id}">🗑️ Hapus</button></td>
+                </tr>`;
+            });
+            html += '</tbody></table>';
+            container.innerHTML = html;
+            document.getElementById('totalSaldo').innerText = formatRupiah(hitungSaldo(filtered));
+            // event hapus
+            document.querySelectorAll('.hapus-transaksi').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const id = parseInt(btn.getAttribute('data-id'));
+                    transaksi = transaksi.filter(t => t.id !== id);
+                    localStorage.setItem('yoyo_keuangan', JSON.stringify(transaksi));
+                    renderTransaksi();
+                });
+            });
+        }
+        function hitungSaldo(arr) {
+            let total = 0;
+            arr.forEach(t => {
+                if(t.jenis === 'pemasukan') total += t.nominal;
+                else total -= t.nominal;
+            });
+            return total;
+        }
+        function formatRupiah(angka) {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(angka);
+        }
+        document.getElementById('tambahTransaksi').addEventListener('click', () => {
+            const jenis = document.getElementById('jenisTransaksi').value;
+            const deskripsi = document.getElementById('deskripsi').value.trim();
+            let nominal = parseFloat(document.getElementById('nominal').value);
+            const tanggal = document.getElementById('tanggal').value;
+            let bulan = document.getElementById('bulan').value;
+            if(!deskripsi || isNaN(nominal) || nominal <= 0 || !tanggal || !bulan) {
+                alert("Harap lengkapi semua data (deskripsi, nominal >0, tanggal, bulan)");
+                return;
+            }
+            const newId = Date.now();
+            transaksi.push({
+                id: newId,
+                jenis: jenis === 'pemasukan' ? '💚 Pemasukan' : (jenis === 'pengeluaran' ? '❤️ Pengeluaran' : '🛍️ Pembelian'),
+                deskripsi: deskripsi,
+                nominal: nominal,
+                tanggal: tanggal,
+                bulan: bulan
+            });
+            localStorage.setItem('yoyo_keuangan', JSON.stringify(transaksi));
+            document.getElementById('deskripsi').value = '';
+            document.getElementById('nominal').value = '';
+            document.getElementById('tanggal').value = '';
+            document.getElementById('bulan').value = '';
+            renderTransaksi();
+        });
+        document.getElementById('filterBulan').addEventListener('change', () => renderTransaksi());
+        document.getElementById('exportExcel').addEventListener('click', () => {
+            let dataExport = transaksi.map(t => ({
+                Tanggal: t.tanggal,
+                Bulan: t.bulan,
+                Jenis: t.jenis,
+                Deskripsi: t.deskripsi,
+                Nominal_Rp: t.nominal
+            }));
+            let csvContent = "\uFEFF" + ["Tanggal","Bulan","Jenis","Deskripsi","Nominal_Rp"].join(",") + "\n";
+            dataExport.forEach(row => {
+                csvContent += Object.values(row).join(",") + "\n";
+            });
+            const blob = new Blob([csvContent], {type: "text/csv;charset=utf-8;"});
+            const link = document.createElement("a");
+            const url = URL.createObjectURL(blob);
+            link.href = url;
+            link.setAttribute("download","catatan_keuangan_yoyo.xls");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        });
+        // Ubah ukuran teks
+        const containerText = document.querySelector('.calc2-container');
+        document.getElementById('teksKecil').addEventListener('click', () => containerText.style.fontSize = '12px');
+        document.getElementById('teksSedang').addEventListener('click', () => containerText.style.fontSize = '16px');
+        document.getElementById('teksBesar').addEventListener('click', () => containerText.style.fontSize = '20px');
+        renderTransaksi();
+    </script>
+</body>
+</html>
