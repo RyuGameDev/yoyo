@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator 1 - Kilauan Emas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="calc1-body">
+    <div class="container calc1-container">
+        <div class="calc1-header">
+            <h1>✨ KALKULATOR KILAU ✨</h1>
+            <button class="back-btn" onclick="location.href='menu.html'">◀ Kembali ke Menu</button>
+        </div>
+        <div class="calculator">
+            <input type="text" id="displayCalc1" class="calc-display" readonly placeholder="0">
+            <div class="calc-buttons">
+                <div class="angka-buttons">
+                    <!-- angka 0-9 -->
+                    <button class="num-btn">7</button><button class="num-btn">8</button><button class="num-btn">9</button>
+                    <button class="num-btn">4</button><button class="num-btn">5</button><button class="num-btn">6</button>
+                    <button class="num-btn">1</button><button class="num-btn">2</button><button class="num-btn">3</button>
+                    <button class="num-btn">0</button><button class="num-btn">.</button><button class="clear-btn">C</button>
+                </div>
+                <div class="operator-buttons">
+                    <button class="op-btn glow-effect" data-op="+">➕ +</button>
+                    <button class="op-btn glow-effect" data-op="*">✖️ ×</button>
+                    <button class="op-btn glow-effect" data-op="/">➗ ÷</button>
+                    <button class="eq-btn glow-effect">= ✨</button>
+                </div>
+            </div>
+        </div>
+        <div class="kilauan-info">✨ Klik + , × , ÷ untuk melihat KILAUAN ✨</div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // Kalkulator sederhana dengan efek kilauan
+        let currentInput = "";
+        const display = document.getElementById('displayCalc1');
+        const numBtns = document.querySelectorAll('.num-btn');
+        const clearBtn = document.querySelector('.clear-btn');
+        const opBtns = document.querySelectorAll('.op-btn');
+        const eqBtn = document.querySelector('.eq-btn');
+
+        function updateDisplay() {
+            display.value = currentInput || "0";
+        }
+
+        numBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                currentInput += btn.innerText;
+                updateDisplay();
+            });
+        });
+
+        clearBtn.addEventListener('click', () => {
+            currentInput = "";
+            updateDisplay();
+        });
+
+        let pendingOp = null;
+        let firstNum = null;
+
+        opBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                if(currentInput === "") return;
+                // Efek kilauan
+                triggerKilauan(btn);
+                if(firstNum === null) {
+                    firstNum = parseFloat(currentInput);
+                    pendingOp = btn.getAttribute('data-op');
+                    currentInput = "";
+                } else {
+                    compute();
+                    pendingOp = btn.getAttribute('data-op');
+                }
+            });
+        });
+
+        eqBtn.addEventListener('click', () => {
+            if(pendingOp !== null && currentInput !== "") {
+                compute();
+                pendingOp = null;
+                firstNum = null;
+                triggerKilauan(eqBtn);
+            }
+        });
+
+        function compute() {
+            let second = parseFloat(currentInput);
+            if(isNaN(second)) return;
+            let result;
+            switch(pendingOp) {
+                case '+': result = firstNum + second; break;
+                case '*': result = firstNum * second; break;
+                case '/': result = firstNum / second; break;
+                default: return;
+            }
+            currentInput = result.toString();
+            updateDisplay();
+            firstNum = null;
+        }
+
+        function triggerKilauan(element) {
+            element.classList.add('kilau-active');
+            setTimeout(() => {
+                element.classList.remove('kilau-active');
+            }, 300);
+            // tambah efek suara visual
+            const flash = document.createElement('div');
+            flash.className = 'kilau-flash';
+            document.body.appendChild(flash);
+            setTimeout(() => flash.remove(), 400);
+        }
+    </script>
+</body>
+</html>
