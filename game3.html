@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game3 - Emoji Keliling</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="game3-body">
+    <div class="container game3-container">
+        <div class="game-header">
+            <h1>🎈 EMOJI GAME 🎀</h1>
+            <button class="back-btn" onclick="location.href='menu.html'">◀ Kembali ke Menu</button>
+        </div>
+        <div class="game-area" id="gameArea">
+            <button id="emojiTombol" class="emoji-lucu">🐼✨</button>
+        </div>
+        <div class="angka-muncul" id="angkaMuncul">✨ klik emoji untuk angka ajaib ✨</div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        const emojiBtn = document.getElementById('emojiTombol');
+        const gameArea = document.getElementById('gameArea');
+        const angkaDiv = document.getElementById('angkaMuncul');
+        let animasiBerjalan = false;
+        let posX = 0, posY = 0;
+        let deltaX = 3, deltaY = 2;
+        let intervalId = null;
+
+        function startGerak() {
+            if(intervalId) clearInterval(intervalId);
+            animasiBerjalan = true;
+            emojiBtn.style.position = 'absolute';
+            const areaRect = gameArea.getBoundingClientRect();
+            let btnWidth = emojiBtn.offsetWidth;
+            let btnHeight = emojiBtn.offsetHeight;
+            posX = Math.random() * (areaRect.width - btnWidth);
+            posY = Math.random() * (areaRect.height - btnHeight);
+            deltaX = (Math.random() * 4 + 2) * (Math.random() > 0.5 ? 1 : -1);
+            deltaY = (Math.random() * 4 + 2) * (Math.random() > 0.5 ? 1 : -1);
+            intervalId = setInterval(() => {
+                const rect = gameArea.getBoundingClientRect();
+                const maxX = rect.width - emojiBtn.offsetWidth;
+                const maxY = rect.height - emojiBtn.offsetHeight;
+                posX += deltaX;
+                posY += deltaY;
+                if(posX <= 0) { posX = 0; deltaX = -deltaX; }
+                if(posX >= maxX) { posX = maxX; deltaX = -deltaX; }
+                if(posY <= 0) { posY = 0; deltaY = -deltaY; }
+                if(posY >= maxY) { posY = maxY; deltaY = -deltaY; }
+                emojiBtn.style.left = posX + 'px';
+                emojiBtn.style.top = posY + 'px';
+            }, 30);
+        }
+        function stopGerak() {
+            if(intervalId) {
+                clearInterval(intervalId);
+                intervalId = null;
+            }
+            animasiBerjalan = false;
+        }
+        emojiBtn.addEventListener('click', () => {
+            // muncul angka random 1-100
+            const randomAngka = Math.floor(Math.random() * 100) + 1;
+            angkaDiv.innerHTML = `🎉 ANGKA MUNCUL: ${randomAngka} 🎉`;
+            angkaDiv.classList.add('pop-angka');
+            setTimeout(() => angkaDiv.classList.remove('pop-angka'), 500);
+            // gerakan bergerak mengelilingi layar
+            if(intervalId) stopGerak();
+            startGerak();
+        });
+        // mulai gerakan otomatis saat halaman dimuat
+        window.addEventListener('load', () => {
+            startGerak();
+            // sesuaikan ulang jika resize
+            window.addEventListener('resize', () => {
+                stopGerak();
+                startGerak();
+            });
+        });
+    </script>
+</body>
+</html>
