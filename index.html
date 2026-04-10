@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Yoyo Menghitung - Beranda</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="index-body">
+    <div class="container index-container">
+        <div class="logo-area">
+            <div class="logo">🧸 YOYO MENGHITUNG ✨</div>
+            <p class="slogan">hitung asyik, catat rapi!</p>
+        </div>
+        <button id="menuButton" class="btn-menu-utama">📋 MENU</button>
+        <div id="kolomMenu" class="kolom-menu hidden">
+            <div class="card-menu" onclick="location.href='calculator1.html'">
+                <div class="card-icon">🧮</div>
+                <h3>Calculator 1</h3>
+                <p>kalkulator penuh kilauan</p>
+            </div>
+            <div class="card-menu" onclick="location.href='kalkulator2.html'">
+                <div class="card-icon">💰</div>
+                <h3>Kalkulator 2</h3>
+                <p>keuangan & pencatatan</p>
+            </div>
+            <div class="card-menu" onclick="location.href='game3.html'">
+                <div class="card-icon">🎮</div>
+                <h3>Game 3</h3>
+                <p>emoji lucu & angka ajaib</p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // Tampilkan 3 kolom saat tombol menu ditekan
+        const menuBtn = document.getElementById('menuButton');
+        const kolomDiv = document.getElementById('kolomMenu');
+        if(menuBtn) {
+            menuBtn.addEventListener('click', () => {
+                kolomDiv.classList.toggle('hidden');
+            });
+        }
+    </script>
+</body>
+</html>
