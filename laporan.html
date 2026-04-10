@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan Keuangan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="laporan-body">
+    <div class="container laporan-container">
+        <div class="header-nav">
+            <a href="index.html">🏠 Beranda</a>
+            <a href="tentang-akuntansi.html">📖 Tentang</a>
+            <a href="data-pemasukan.html">💚 Pemasukan</a>
+            <a href="data-pengeluaran.html">❤️ Pengeluaran</a>
+            <a href="laporan.html">📊 Laporan</a>
+            <a href="kontak.html">📞 Kontak</a>
+            <a href="menu.html">🔧 Menu Tools</a>
+        </div>
+
+        <h1>📊 Laporan Keuangan</h1>
+        <div class="laporan-card">
+            <div class="laporan-item">
+                <span class="label">Total Pemasukan :</span>
+                <span id="totalPemasukan" class="value hijau">Rp0</span>
+            </div>
+            <div class="laporan-item">
+                <span class="label">Total Pengeluaran :</span>
+                <span id="totalPengeluaran" class="value merah">Rp0</span>
+            </div>
+            <div class="laporan-item">
+                <span class="label">Sisa Uang (Saldo) :</span>
+                <span id="sisaUang" class="value biru">Rp0</span>
+            </div>
+        </div>
+        <button id="refreshLaporan" class="btn-refresh">🔄 Refresh Data</button>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        function updateLaporan() {
+            const pemasukan = JSON.parse(localStorage.getItem('yoyo_pemasukan')) || [];
+            const pengeluaran = JSON.parse(localStorage.getItem('yoyo_pengeluaran')) || [];
+            const totalMasuk = pemasukan.reduce((sum, item) => sum + item.jumlah, 0);
+            const totalKeluar = pengeluaran.reduce((sum, item) => sum + item.jumlah, 0);
+            const sisa = totalMasuk - totalKeluar;
+            document.getElementById('totalPemasukan').innerText = formatRupiah(totalMasuk);
+            document.getElementById('totalPengeluaran').innerText = formatRupiah(totalKeluar);
+            document.getElementById('sisaUang').innerText = formatRupiah(sisa);
+        }
+        document.getElementById('refreshLaporan').addEventListener('click', updateLaporan);
+        updateLaporan();
+    </script>
+</body>
+</html>
