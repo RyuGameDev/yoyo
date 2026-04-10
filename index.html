@@ -3,44 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Yoyo Menghitung - Beranda</title>
+    <title>Aplikasi Akuntansi YOYO</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="index-body">
     <div class="container index-container">
         <div class="logo-area">
-            <div class="logo">🧸 YOYO MENGHITUNG ✨</div>
-            <p class="slogan">hitung asyik, catat rapi!</p>
+            <div class="logo">📊 YOYO ACCOUNTING</div>
+            <p class="slogan">Catat Keuangan | Hitung | Kelola dengan Mudah</p>
         </div>
-        <button id="menuButton" class="btn-menu-utama">📋 MENU</button>
+
+        <!-- Tombol Menu Utama -->
+        <button id="menuButton" class="btn-menu-utama">☰ BUKA MENU</button>
+        
+        <!-- 3 Kolom menu (Calculator1, Kalkulator2) - tanpa game -->
         <div id="kolomMenu" class="kolom-menu hidden">
             <div class="card-menu" onclick="location.href='calculator1.html'">
                 <div class="card-icon">🧮</div>
-                <h3>Calculator 1</h3>
-                <p>kalkulator penuh kilauan</p>
+                <h3>Kalkulator Standar</h3>
+                <p>Operasi hitung dasar</p>
             </div>
             <div class="card-menu" onclick="location.href='kalkulator2.html'">
                 <div class="card-icon">💰</div>
-                <h3>Kalkulator 2</h3>
-                <p>keuangan & pencatatan</p>
+                <h3>Buku Kas Keuangan</h3>
+                <p>Catatan pemasukan & pengeluaran</p>
             </div>
-            <div class="card-menu" onclick="location.href='game3.html'">
-                <div class="card-icon">🎮</div>
-                <h3>Game 3</h3>
-                <p>emoji lucu & angka ajaib</p>
-            </div>
+        </div>
+
+        <!-- Bagian Pengertian Akuntansi & Cara Pemakaian -->
+        <div class="edukasi-section">
+            <h2>📖 Pengertian Akuntansi</h2>
+            <p><strong>Akuntansi</strong> adalah proses mencatat, mengklasifikasikan, meringkas, dan melaporkan informasi keuangan suatu entitas. Tujuannya agar pengguna (pemilik usaha, manajer) dapat mengambil keputusan ekonomi yang tepat. Dalam aplikasi ini, Anda dapat melakukan <strong>pencatatan transaksi</strong> (pemasukan, pengeluaran, pembelian) serta <strong>menghitung</strong> dengan kalkulator.</p>
+            
+            <h2>📌 Cara Pemakaian Aplikasi</h2>
+            <ol class="cara-pakai">
+                <li>Klik tombol <strong>☰ BUKA MENU</strong> di atas, lalu pilih menu yang diinginkan.</li>
+                <li><strong>Kalkulator Standar</strong> : untuk operasi +, ×, ÷. Tekan tombol operator akan muncul efek visual.</li>
+                <li><strong>Buku Kas Keuangan</strong> : tambah transaksi dengan memilih jenis (pemasukan/pengeluaran/pembelian), isi deskripsi, nominal, tanggal & bulan. Data tersimpan otomatis di browser Anda. Bisa difilter per bulan dan di-<em>export</em> ke Excel.</li>
+                <li>Setiap halaman menyediakan tombol <strong>Kembali ke Menu</strong> untuk navigasi mudah.</li>
+            </ol>
+            <p class="info-tip">💡 <em>Semua data disimpan secara lokal di perangkat Anda (localStorage).</em></p>
         </div>
     </div>
     <script src="script.js"></script>
     <script>
-        // Tampilkan 3 kolom saat tombol menu ditekan
         const menuBtn = document.getElementById('menuButton');
         const kolomDiv = document.getElementById('kolomMenu');
-        if(menuBtn) {
-            menuBtn.addEventListener('click', () => {
-                kolomDiv.classList.toggle('hidden');
-            });
-        }
+        menuBtn.addEventListener('click', () => {
+            kolomDiv.classList.toggle('hidden');
+        });
     </script>
 </body>
 </html>
