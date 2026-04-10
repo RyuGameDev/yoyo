@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Utama - Yoyo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="menu-body">
+    <div class="container menu-container">
+        <h2>🌸 Halo, siapa nama kamu? 🌸</h2>
+        <input type="text" id="namaUser" class="input-nama" placeholder="Tulis namamu di sini..." autocomplete="off">
+        <div class="tombol-menu-container">
+            <button class="tombol-aksi tombol-calc1" onclick="goToWithName('calculator1.html')">
+                🐬 CALCULATOR 1 <span class="stiker">🐬🌟</span>
+            </button>
+            <button class="tombol-aksi tombol-calc2" onclick="goToWithName('kalkulator2.html')">
+                🦄 KALKULATOR 2 <span class="stiker">✨🎀</span>
+            </button>
+            <button class="tombol-aksi tombol-game" onclick="goToWithName('game3.html')">
+                🎀 GAME 3 <span class="stiker">🎀🎈</span>
+            </button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        function goToWithName(halaman) {
+            let nama = document.getElementById('namaUser').value.trim();
+            if(nama === "") nama = "Sahabat Yoyo";
+            localStorage.setItem('namaPengguna', nama);
+            window.location.href = halaman;
+        }
+    </script>
+</body>
+</html>
