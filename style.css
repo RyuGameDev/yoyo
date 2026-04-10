@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+    font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
 }
 
 body {
@@ -11,7 +11,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 16px;
 }
 
 .container {
@@ -19,8 +19,8 @@ body {
     width: 100%;
     background: rgba(255,255,255,0.2);
     backdrop-filter: blur(4px);
-    border-radius: 48px;
-    padding: 30px 20px;
+    border-radius: 32px;
+    padding: 24px 16px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.2);
     text-align: center;
 }
@@ -30,7 +30,7 @@ body {
     background: linear-gradient(145deg, #ffdde1 0%, #ee9ca7 100%);
 }
 .logo-area .logo {
-    font-size: 3rem;
+    font-size: clamp(1.8rem, 8vw, 3rem);
     font-weight: bold;
     background: linear-gradient(135deg, #FFD166, #F4A261);
     -webkit-background-clip: text;
@@ -38,41 +38,47 @@ body {
     color: transparent;
     text-shadow: 2px 2px 10px rgba(0,0,0,0.1);
 }
+.slogan {
+    font-size: clamp(0.9rem, 4vw, 1.2rem);
+}
 .btn-menu-utama {
     background: #6c5ce7;
     border: none;
-    padding: 15px 40px;
-    font-size: 1.8rem;
+    padding: 12px 24px;
+    font-size: clamp(1.2rem, 6vw, 1.8rem);
     border-radius: 60px;
     color: white;
     font-weight: bold;
-    margin: 30px 0;
+    margin: 24px 0;
     cursor: pointer;
     transition: 0.2s;
-    box-shadow: 0 8px 0 #3d2c8f;
+    box-shadow: 0 6px 0 #3d2c8f;
+    width: 80%;
+    max-width: 280px;
 }
 .btn-menu-utama:active {
     transform: translateY(4px);
-    box-shadow: 0 4px 0 #3d2c8f;
+    box-shadow: 0 2px 0 #3d2c8f;
 }
 .kolom-menu {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 25px;
+    gap: 20px;
     margin-top: 20px;
-    transition: all 0.3s ease;
 }
 .card-menu {
     background: white;
-    border-radius: 35px;
-    padding: 20px;
-    width: 200px;
+    border-radius: 28px;
+    padding: 16px;
+    width: 160px;
     cursor: pointer;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
     transition: 0.2s;
 }
-.card-menu:hover { transform: scale(1.03); background: #fff9e8; }
+.card-menu:hover { transform: scale(1.02); background: #fff9e8; }
+.card-menu h3 { font-size: 1.2rem; }
+.card-menu p { font-size: 0.8rem; }
 .hidden { display: none; }
 
 /* MENU.HTML */
@@ -80,57 +86,58 @@ body {
     background: radial-gradient(circle at 10% 30%, #fbc2eb, #a6c1ee);
 }
 .input-nama {
-    width: 80%;
-    padding: 15px;
+    width: 90%;
+    max-width: 350px;
+    padding: 14px;
     border-radius: 50px;
     border: none;
-    font-size: 1.2rem;
-    margin: 20px 0;
+    font-size: 1rem;
+    margin: 20px auto;
     text-align: center;
     background: #fff9f0;
 }
 .tombol-menu-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 25px;
+    gap: 16px;
     justify-content: center;
     margin-top: 20px;
 }
 .tombol-aksi {
-    padding: 18px 25px;
-    font-size: 1.3rem;
+    padding: 14px 20px;
+    font-size: 1rem;
     border: none;
     border-radius: 60px;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.2s;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: auto;
+    min-width: 180px;
 }
-.tombol-calc1 { background: #3498ff; color: white; box-shadow: 0 5px 0 #1f5bb5; }
-.tombol-calc2 { background: #c084fc; color: #2e1065; box-shadow: 0 5px 0 #8b5cf6; }
-.tombol-game { background: #f9a8d4; color: #831843; box-shadow: 0 5px 0 #ec489a; }
-.stiker { font-size: 1.5rem; }
+.tombol-calc1 { background: #3498ff; color: white; box-shadow: 0 4px 0 #1f5bb5; }
+.tombol-calc2 { background: #c084fc; color: #2e1065; box-shadow: 0 4px 0 #8b5cf6; }
+.tombol-game { background: #f9a8d4; color: #831843; box-shadow: 0 4px 0 #ec489a; }
+.stiker { font-size: 1.2rem; }
 
 /* CALCULATOR1 */
 .calc1-body {
     background: linear-gradient(135deg, #1e3c72, #2b3b4e, #d4af37);
 }
-.calc1-container {
-    background: rgba(0,0,0,0.3);
-}
 .calculator {
     background: rgba(255,255,240,0.9);
-    border-radius: 50px;
-    padding: 20px;
-    margin: 20px auto;
+    border-radius: 40px;
+    padding: 16px;
+    margin: 16px auto;
     max-width: 500px;
 }
 .calc-display {
     width: 100%;
-    padding: 20px;
-    font-size: 2rem;
+    padding: 16px;
+    font-size: clamp(1.5rem, 6vw, 2rem);
     text-align: right;
     border-radius: 40px;
     border: none;
@@ -139,35 +146,48 @@ body {
 }
 .calc-buttons {
     display: flex;
-    gap: 15px;
+    flex-direction: column;
+    gap: 12px;
     margin-top: 20px;
 }
 .angka-buttons {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    flex: 2;
+    gap: 10px;
 }
 .angka-buttons button, .clear-btn {
     background: #2c3e66;
     color: white;
-    font-size: 1.5rem;
-    padding: 15px;
+    font-size: 1.3rem;
+    padding: 14px 0;
     border-radius: 30px;
     border: none;
 }
 .operator-buttons {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
 }
 .op-btn, .eq-btn {
     background: #f4c542;
-    font-size: 1.5rem;
-    padding: 15px;
+    font-size: 1.3rem;
+    padding: 14px;
     border-radius: 40px;
     font-weight: bold;
+}
+/* untuk layar lebar, kembalikan ke layout dua kolom */
+@media (min-width: 550px) {
+    .calc-buttons {
+        flex-direction: row;
+    }
+    .angka-buttons {
+        flex: 2;
+    }
+    .operator-buttons {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
 }
 .kilau-active {
     animation: kilau 0.3s ease-in-out;
@@ -175,8 +195,8 @@ body {
     box-shadow: 0 0 20px gold;
 }
 @keyframes kilau {
-    0% { transform: scale(1); opacity: 1; text-shadow: none; }
-    50% { transform: scale(1.1); text-shadow: 0 0 15px yellow; background: #fff3b0; }
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); background: #fff3b0; }
 }
 .kilau-flash {
     position: fixed;
@@ -189,61 +209,96 @@ body {
 }
 @keyframes fadeFlash { 0% { opacity: 1; } 100% { opacity: 0; } }
 
-/* KALKULATOR 2 */
+/* KALKULATOR 2 (Keuangan) */
 .calc2-body {
     background: linear-gradient(125deg, #4a1d6d, #1b2b6e);
 }
 .calc2-container {
-    background: rgba(20, 20, 50, 0.7);
+    background: rgba(20, 20, 50, 0.8);
     color: white;
+    padding: 16px;
 }
 .form-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 12px;
     margin: 15px 0;
     justify-content: center;
 }
-.form-row input, select {
+.form-row input, .form-row select {
     padding: 12px;
-    border-radius: 30px;
+    border-radius: 40px;
     border: none;
-    font-size: 1rem;
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: 280px;
+}
+@media (min-width: 600px) {
+    .form-row input, .form-row select {
+        width: auto;
+        flex: 1;
+    }
 }
 .btn-tambah, .btn-export {
     background: #5a67d8;
-    padding: 12px 25px;
+    padding: 12px 20px;
     border-radius: 50px;
     border: none;
     color: white;
     font-weight: bold;
     cursor: pointer;
+    margin: 5px;
 }
 .tabel-keuangan {
     width: 100%;
     border-collapse: collapse;
     background: rgba(255,255,255,0.2);
     border-radius: 20px;
-    overflow: auto;
+    overflow-x: auto;
+    display: block;
 }
 .tabel-keuangan th, .tabel-keuangan td {
-    padding: 10px;
+    padding: 8px;
     border-bottom: 1px solid rgba(255,255,255,0.3);
+    font-size: 0.8rem;
 }
 .hapus-transaksi {
     background: #e53e3e;
     border: none;
-    padding: 5px 12px;
+    padding: 4px 10px;
     border-radius: 30px;
     color: white;
+    font-size: 0.7rem;
 }
 .pengaturan-teks button {
     background: white;
     border: none;
     margin: 5px;
-    padding: 5px 15px;
+    padding: 6px 14px;
     border-radius: 30px;
+    font-size: 0.8rem;
 }
+.filter-bulan {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    align-items: center;
+}
+.list-transaksi {
+    overflow-x: auto;
+}
+.total-saldo {
+    font-size: 1.2rem;
+    margin-top: 20px;
+    background: gold;
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 40px;
+    color: #2d2d44;
+}
+
 /* GAME3 */
 .game3-body {
     background: linear-gradient(145deg, #ffb6c1, #d8b4e2);
@@ -251,29 +306,33 @@ body {
 .game-area {
     position: relative;
     background: #ffe4e9;
-    height: 450px;
-    border-radius: 70px;
-    margin: 20px 0;
+    height: 60vh;
+    min-height: 350px;
+    border-radius: 50px;
+    margin: 16px 0;
     overflow: hidden;
     box-shadow: inset 0 0 20px #f9a8d4;
 }
 .emoji-lucu {
-    font-size: 4rem;
+    font-size: clamp(2.5rem, 12vw, 4rem);
     background: transparent;
     border: none;
     cursor: pointer;
-    transition: 0.1s;
     filter: drop-shadow(0 8px 12px rgba(0,0,0,0.2));
     position: absolute;
     left: 20px;
     top: 20px;
+    transition: transform 0.1s ease;
+}
+.emoji-lucu:active {
+    transform: scale(0.95);
 }
 .angka-muncul {
-    font-size: 2rem;
+    font-size: clamp(1rem, 5vw, 1.6rem);
     font-weight: bold;
     background: white;
     display: inline-block;
-    padding: 15px 30px;
+    padding: 12px 24px;
     border-radius: 60px;
     margin-top: 15px;
     box-shadow: 0 5px 15px pink;
@@ -288,14 +347,35 @@ body {
 }
 .back-btn {
     background: #2d2d44;
-    padding: 8px 20px;
+    padding: 8px 18px;
     border-radius: 40px;
     color: white;
     border: none;
     margin-bottom: 15px;
     cursor: pointer;
+    font-size: 0.9rem;
 }
-@media (max-width: 700px) {
-    .container { padding: 20px; }
-    .tombol-aksi { font-size: 1rem; padding: 12px 18px; }
+
+/* Perbaikan umum untuk mobile */
+@media (max-width: 480px) {
+    .container {
+        padding: 16px 12px;
+        border-radius: 28px;
+    }
+    .card-menu {
+        width: 140px;
+        padding: 12px;
+    }
+    .tombol-aksi {
+        min-width: 150px;
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+    .tabel-keuangan th, .tabel-keuangan td {
+        font-size: 0.7rem;
+        padding: 6px;
+    }
+    .total-saldo {
+        font-size: 1rem;
+    }
 }
