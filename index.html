@@ -2,56 +2,41 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Aplikasi Akuntansi YOYO</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beranda | Aplikasi Keuangan</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="index-body">
-    <div class="container index-container">
-        <div class="logo-area">
-            <div class="logo">📊 YOYO ACCOUNTING</div>
-            <p class="slogan">Catat Keuangan | Hitung | Kelola dengan Mudah</p>
+<body class="beranda-body">
+    <div class="container beranda-container">
+        <div class="header-nav">
+            <a href="index.html" class="nav-link">🏠 Beranda</a>
+            <a href="tentang-akuntansi.html" class="nav-link">📖 Tentang</a>
+            <a href="data-pemasukan.html" class="nav-link">💚 Pemasukan</a>
+            <a href="data-pengeluaran.html" class="nav-link">❤️ Pengeluaran</a>
+            <a href="laporan.html" class="nav-link">📊 Laporan</a>
+            <a href="kontak.html" class="nav-link">📞 Kontak</a>
+            <a href="menu.html" class="nav-link">🔧 Menu Tools</a>
         </div>
 
-        <!-- Tombol Menu Utama -->
-        <button id="menuButton" class="btn-menu-utama">☰ BUKA MENU</button>
-        
-        <!-- 3 Kolom menu (Calculator1, Kalkulator2) - tanpa game -->
-        <div id="kolomMenu" class="kolom-menu hidden">
-            <div class="card-menu" onclick="location.href='calculator1.html'">
-                <div class="card-icon">🧮</div>
-                <h3>Kalkulator Standar</h3>
-                <p>Operasi hitung dasar</p>
+        <div class="hero">
+            <h1>📋 Aplikasi Pencatatan Keuangan</h1>
+            <p class="tagline">Catat pemasukan & pengeluaran dengan mudah, cepat, dan akurat.</p>
+            <div class="ilustrasi">
+                <!-- ilustrasi sederhana dengan emoji/ikon -->
+                <span class="ilustrasi-icon">💰📊🧮</span>
             </div>
-            <div class="card-menu" onclick="location.href='kalkulator2.html'">
-                <div class="card-icon">💰</div>
-                <h3>Buku Kas Keuangan</h3>
-                <p>Catatan pemasukan & pengeluaran</p>
+            <p class="deskripsi-singkat">
+                Web ini membantu Anda mencatat <strong>pemasukan</strong> dan <strong>pengeluaran</strong> sehari-hari, 
+                menyusun laporan keuangan, serta menyediakan kalkulator dan buku kas digital. 
+                Semua data tersimpan aman di browser Anda.
+            </p>
+            <div class="tombol-aksi-cepat">
+                <a href="data-pemasukan.html" class="btn-cepat">➕ Tambah Pemasukan</a>
+                <a href="data-pengeluaran.html" class="btn-cepat">➖ Tambah Pengeluaran</a>
+                <a href="laporan.html" class="btn-cepat">📈 Lihat Laporan</a>
             </div>
-        </div>
-
-        <!-- Bagian Pengertian Akuntansi & Cara Pemakaian -->
-        <div class="edukasi-section">
-            <h2>📖 Pengertian Akuntansi</h2>
-            <p><strong>Akuntansi</strong> adalah proses mencatat, mengklasifikasikan, meringkas, dan melaporkan informasi keuangan suatu entitas. Tujuannya agar pengguna (pemilik usaha, manajer) dapat mengambil keputusan ekonomi yang tepat. Dalam aplikasi ini, Anda dapat melakukan <strong>pencatatan transaksi</strong> (pemasukan, pengeluaran, pembelian) serta <strong>menghitung</strong> dengan kalkulator.</p>
-            
-            <h2>📌 Cara Pemakaian Aplikasi</h2>
-            <ol class="cara-pakai">
-                <li>Klik tombol <strong>☰ BUKA MENU</strong> di atas, lalu pilih menu yang diinginkan.</li>
-                <li><strong>Kalkulator Standar</strong> : untuk operasi +, ×, ÷. Tekan tombol operator akan muncul efek visual.</li>
-                <li><strong>Buku Kas Keuangan</strong> : tambah transaksi dengan memilih jenis (pemasukan/pengeluaran/pembelian), isi deskripsi, nominal, tanggal & bulan. Data tersimpan otomatis di browser Anda. Bisa difilter per bulan dan di-<em>export</em> ke Excel.</li>
-                <li>Setiap halaman menyediakan tombol <strong>Kembali ke Menu</strong> untuk navigasi mudah.</li>
-            </ol>
-            <p class="info-tip">💡 <em>Semua data disimpan secara lokal di perangkat Anda (localStorage).</em></p>
         </div>
     </div>
     <script src="script.js"></script>
-    <script>
-        const menuBtn = document.getElementById('menuButton');
-        const kolomDiv = document.getElementById('kolomMenu');
-        menuBtn.addEventListener('click', () => {
-            kolomDiv.classList.toggle('hidden');
-        });
-    </script>
 </body>
 </html>
