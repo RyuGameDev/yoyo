@@ -1,9 +1,9 @@
-/* GLOBAL & RESET */
+/* RESET & GLOBAL - TEMA FORMAL */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
 }
 
 body {
@@ -11,144 +11,177 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 16px;
+    padding: 20px;
+    background: #f0f2f5;
 }
 
 .container {
     max-width: 1200px;
     width: 100%;
-    background: rgba(255,255,255,0.2);
-    backdrop-filter: blur(4px);
-    border-radius: 32px;
-    padding: 24px 16px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 30px 24px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
     text-align: center;
 }
 
-/* INDEX.HTML */
+/* INDEX */
 .index-body {
-    background: linear-gradient(145deg, #ffdde1 0%, #ee9ca7 100%);
+    background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
 }
 .logo-area .logo {
-    font-size: clamp(1.8rem, 8vw, 3rem);
-    font-weight: bold;
-    background: linear-gradient(135deg, #FFD166, #F4A261);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+    font-size: clamp(1.6rem, 6vw, 2.4rem);
+    font-weight: 700;
+    color: #1e3c72;
+    letter-spacing: -0.5px;
 }
 .slogan {
-    font-size: clamp(0.9rem, 4vw, 1.2rem);
+    color: #2c3e50;
+    margin-top: 8px;
+    font-size: 0.95rem;
 }
 .btn-menu-utama {
-    background: #6c5ce7;
+    background: #2c3e66;
     border: none;
-    padding: 12px 24px;
-    font-size: clamp(1.2rem, 6vw, 1.8rem);
-    border-radius: 60px;
+    padding: 12px 28px;
+    font-size: 1.2rem;
+    border-radius: 40px;
     color: white;
-    font-weight: bold;
-    margin: 24px 0;
+    font-weight: 600;
+    margin: 25px 0;
     cursor: pointer;
     transition: 0.2s;
-    box-shadow: 0 6px 0 #3d2c8f;
-    width: 80%;
-    max-width: 280px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    width: auto;
+    min-width: 180px;
 }
-.btn-menu-utama:active {
-    transform: translateY(4px);
-    box-shadow: 0 2px 0 #3d2c8f;
-}
+.btn-menu-utama:hover { background: #1e2f4a; transform: translateY(-2px);}
 .kolom-menu {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: 24px;
     margin-top: 20px;
 }
 .card-menu {
-    background: white;
-    border-radius: 28px;
-    padding: 16px;
-    width: 160px;
+    background: #f8f9fa;
+    border-radius: 20px;
+    padding: 20px;
+    width: 180px;
     cursor: pointer;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
     transition: 0.2s;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
-.card-menu:hover { transform: scale(1.02); background: #fff9e8; }
-.card-menu h3 { font-size: 1.2rem; }
-.card-menu p { font-size: 0.8rem; }
+.card-menu:hover { transform: translateY(-5px); background: #ffffff; box-shadow: 0 8px 20px rgba(0,0,0,0.1);}
+.card-icon { font-size: 2.5rem; margin-bottom: 10px; }
+.card-menu h3 { font-size: 1.2rem; margin: 10px 0 5px; color: #1e3c72; }
+.card-menu p { font-size: 0.8rem; color: #495057; }
 .hidden { display: none; }
 
-/* MENU.HTML */
+/* EDUKASI */
+.edukasi-section {
+    margin-top: 35px;
+    text-align: left;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 20px;
+    border-left: 5px solid #2c3e66;
+}
+.edukasi-section h2 {
+    font-size: 1.3rem;
+    color: #1e3c72;
+    margin: 15px 0 8px;
+}
+.edukasi-section p, .cara-pakai li {
+    color: #2d3e50;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+.cara-pakai {
+    padding-left: 25px;
+}
+.info-tip {
+    background: #e9ecef;
+    padding: 10px;
+    border-radius: 12px;
+    margin-top: 15px;
+    font-size: 0.85rem;
+}
+
+/* MENU */
 .menu-body {
-    background: radial-gradient(circle at 10% 30%, #fbc2eb, #a6c1ee);
+    background: #eef2f5;
+}
+.menu-container {
+    max-width: 600px;
 }
 .input-nama {
     width: 90%;
-    max-width: 350px;
-    padding: 14px;
-    border-radius: 50px;
-    border: none;
+    padding: 12px 20px;
+    border-radius: 40px;
+    border: 1px solid #ced4da;
     font-size: 1rem;
-    margin: 20px auto;
+    margin: 20px 0;
     text-align: center;
-    background: #fff9f0;
 }
 .tombol-menu-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 20px;
     justify-content: center;
-    margin-top: 20px;
+    margin: 20px 0;
 }
 .tombol-aksi {
-    padding: 14px 20px;
+    padding: 12px 24px;
     font-size: 1rem;
     border: none;
-    border-radius: 60px;
-    font-weight: bold;
+    border-radius: 40px;
+    font-weight: 600;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: auto;
-    min-width: 180px;
+    background: #f1f3f5;
+    color: #1e3c72;
+    transition: 0.2s;
+    border: 1px solid #dee2e6;
 }
-.tombol-calc1 { background: #3498ff; color: white; box-shadow: 0 4px 0 #1f5bb5; }
-.tombol-calc2 { background: #c084fc; color: #2e1065; box-shadow: 0 4px 0 #8b5cf6; }
-.tombol-game { background: #f9a8d4; color: #831843; box-shadow: 0 4px 0 #ec489a; }
-.stiker { font-size: 1.2rem; }
+.tombol-calc1 { background: #e7f1ff; border-color: #b8d0ff; }
+.tombol-calc2 { background: #e6f7e6; border-color: #b3e0b3; }
+.tombol-aksi:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.05);}
+.back-home {
+    background: none;
+    border: none;
+    color: #5a67d8;
+    margin-top: 15px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-decoration: underline;
+}
 
-/* CALCULATOR1 */
+/* KALKULATOR 1 (formal) */
 .calc1-body {
-    background: linear-gradient(135deg, #1e3c72, #2b3b4e, #d4af37);
+    background: #eef2f5;
+}
+.calc1-container {
+    background: white;
 }
 .calculator {
-    background: rgba(255,255,240,0.9);
-    border-radius: 40px;
-    padding: 16px;
-    margin: 16px auto;
     max-width: 500px;
+    margin: 20px auto;
 }
 .calc-display {
     width: 100%;
-    padding: 16px;
-    font-size: clamp(1.5rem, 6vw, 2rem);
+    padding: 18px;
+    font-size: 1.8rem;
     text-align: right;
-    border-radius: 40px;
-    border: none;
-    background: #1e1e2f;
-    color: gold;
+    border-radius: 16px;
+    border: 1px solid #ced4da;
+    background: #f8f9fa;
+    margin-bottom: 20px;
 }
 .calc-buttons {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    margin-top: 20px;
 }
 .angka-buttons {
     display: grid;
@@ -156,67 +189,42 @@ body {
     gap: 10px;
 }
 .angka-buttons button, .clear-btn {
-    background: #2c3e66;
-    color: white;
-    font-size: 1.3rem;
-    padding: 14px 0;
-    border-radius: 30px;
-    border: none;
+    background: #f1f3f5;
+    border: 1px solid #dee2e6;
+    padding: 14px;
+    font-size: 1.2rem;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: 0.1s;
 }
+.angka-buttons button:active, .clear-btn:active { background: #e9ecef; }
 .operator-buttons {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 10px;
 }
 .op-btn, .eq-btn {
-    background: #f4c542;
-    font-size: 1.3rem;
+    background: #2c3e66;
+    color: white;
+    border: none;
     padding: 14px;
-    border-radius: 40px;
-    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 14px;
+    cursor: pointer;
 }
-/* untuk layar lebar, kembalikan ke layout dua kolom */
-@media (min-width: 550px) {
-    .calc-buttons {
-        flex-direction: row;
-    }
-    .angka-buttons {
-        flex: 2;
-    }
-    .operator-buttons {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-    }
+.eq-btn { background: #1e5f5a; }
+.info-calc {
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin-top: 20px;
 }
-.kilau-active {
-    animation: kilau 0.3s ease-in-out;
-    background: #ffec80 !important;
-    box-shadow: 0 0 20px gold;
-}
-@keyframes kilau {
-    0% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.05); background: #fff3b0; }
-}
-.kilau-flash {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: radial-gradient(circle, rgba(255,215,0,0.4) 0%, rgba(255,215,0,0) 80%);
-    pointer-events: none;
-    z-index: 999;
-    animation: fadeFlash 0.4s forwards;
-}
-@keyframes fadeFlash { 0% { opacity: 1; } 100% { opacity: 0; } }
 
-/* KALKULATOR 2 (Keuangan) */
+/* KALKULATOR 2 (keuangan) */
 .calc2-body {
-    background: linear-gradient(125deg, #4a1d6d, #1b2b6e);
+    background: #eef2f5;
 }
 .calc2-container {
-    background: rgba(20, 20, 50, 0.8);
-    color: white;
-    padding: 16px;
+    background: white;
 }
 .form-row {
     display: flex;
@@ -226,156 +234,89 @@ body {
     justify-content: center;
 }
 .form-row input, .form-row select {
-    padding: 12px;
+    padding: 10px 16px;
     border-radius: 40px;
-    border: none;
+    border: 1px solid #ced4da;
     font-size: 0.9rem;
-    width: 100%;
-    max-width: 280px;
-}
-@media (min-width: 600px) {
-    .form-row input, .form-row select {
-        width: auto;
-        flex: 1;
-    }
+    flex: 1;
+    min-width: 140px;
 }
 .btn-tambah, .btn-export {
-    background: #5a67d8;
-    padding: 12px 20px;
-    border-radius: 50px;
+    background: #2c3e66;
     border: none;
+    padding: 10px 24px;
+    border-radius: 40px;
     color: white;
-    font-weight: bold;
+    font-weight: 600;
     cursor: pointer;
     margin: 5px;
-}
-.tabel-keuangan {
-    width: 100%;
-    border-collapse: collapse;
-    background: rgba(255,255,255,0.2);
-    border-radius: 20px;
-    overflow-x: auto;
-    display: block;
-}
-.tabel-keuangan th, .tabel-keuangan td {
-    padding: 8px;
-    border-bottom: 1px solid rgba(255,255,255,0.3);
-    font-size: 0.8rem;
-}
-.hapus-transaksi {
-    background: #e53e3e;
-    border: none;
-    padding: 4px 10px;
-    border-radius: 30px;
-    color: white;
-    font-size: 0.7rem;
-}
-.pengaturan-teks button {
-    background: white;
-    border: none;
-    margin: 5px;
-    padding: 6px 14px;
-    border-radius: 30px;
-    font-size: 0.8rem;
 }
 .filter-bulan {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
-    margin-bottom: 15px;
+    gap: 12px;
+    margin: 20px 0;
     align-items: center;
 }
-.list-transaksi {
-    overflow-x: auto;
+.tabel-keuangan {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.tabel-keuangan th, .tabel-keuangan td {
+    padding: 10px;
+    border-bottom: 1px solid #e9ecef;
+    text-align: left;
+    font-size: 0.85rem;
+}
+.tabel-keuangan th {
+    background: #f1f3f5;
+    font-weight: 600;
+}
+.hapus-transaksi {
+    background: #dc3545;
+    border: none;
+    padding: 4px 12px;
+    border-radius: 30px;
+    color: white;
+    cursor: pointer;
+    font-size: 0.7rem;
 }
 .total-saldo {
     font-size: 1.2rem;
-    margin-top: 20px;
-    background: gold;
-    display: inline-block;
-    padding: 8px 20px;
-    border-radius: 40px;
-    color: #2d2d44;
-}
-
-/* GAME3 */
-.game3-body {
-    background: linear-gradient(145deg, #ffb6c1, #d8b4e2);
-}
-.game-area {
-    position: relative;
-    background: #ffe4e9;
-    height: 60vh;
-    min-height: 350px;
-    border-radius: 50px;
-    margin: 16px 0;
-    overflow: hidden;
-    box-shadow: inset 0 0 20px #f9a8d4;
-}
-.emoji-lucu {
-    font-size: clamp(2.5rem, 12vw, 4rem);
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    filter: drop-shadow(0 8px 12px rgba(0,0,0,0.2));
-    position: absolute;
-    left: 20px;
-    top: 20px;
-    transition: transform 0.1s ease;
-}
-.emoji-lucu:active {
-    transform: scale(0.95);
-}
-.angka-muncul {
-    font-size: clamp(1rem, 5vw, 1.6rem);
     font-weight: bold;
-    background: white;
+    margin-top: 20px;
+    padding: 12px;
+    background: #e9ecef;
+    border-radius: 40px;
     display: inline-block;
-    padding: 12px 24px;
-    border-radius: 60px;
-    margin-top: 15px;
-    box-shadow: 0 5px 15px pink;
 }
-.pop-angka {
-    animation: bounce 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-@keyframes bounce {
-    0% { transform: scale(0.8); opacity: 0; }
-    80% { transform: scale(1.2); }
-    100% { transform: scale(1); }
+.pengaturan-teks button {
+    background: #e9ecef;
+    border: 1px solid #ced4da;
+    padding: 5px 14px;
+    border-radius: 30px;
+    margin: 0 4px;
+    cursor: pointer;
 }
 .back-btn {
-    background: #2d2d44;
-    padding: 8px 18px;
+    background: #6c757d;
+    border: none;
+    padding: 8px 20px;
     border-radius: 40px;
     color: white;
-    border: none;
-    margin-bottom: 15px;
     cursor: pointer;
-    font-size: 0.9rem;
+    margin-bottom: 15px;
 }
 
-/* Perbaikan umum untuk mobile */
-@media (max-width: 480px) {
-    .container {
-        padding: 16px 12px;
-        border-radius: 28px;
-    }
-    .card-menu {
-        width: 140px;
-        padding: 12px;
-    }
-    .tombol-aksi {
-        min-width: 150px;
-        padding: 10px 16px;
-        font-size: 0.9rem;
-    }
-    .tabel-keuangan th, .tabel-keuangan td {
-        font-size: 0.7rem;
-        padding: 6px;
-    }
-    .total-saldo {
-        font-size: 1rem;
-    }
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    .container { padding: 20px 16px; }
+    .card-menu { width: 150px; padding: 15px; }
+    .operator-buttons { grid-template-columns: repeat(4, 1fr); }
+    .tabel-keuangan th, .tabel-keuangan td { font-size: 0.7rem; padding: 6px; }
 }
