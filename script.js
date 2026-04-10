@@ -14,3 +14,18 @@ if(typeof localStorage !== 'undefined') {
         localStorage.setItem('yoyo_keuangan', JSON.stringify([]));
     }
 }
+// Inisialisasi data default contoh (sesuai permintaan client)
+if(!localStorage.getItem('yoyo_pemasukan')) {
+    const contohPemasukan = [
+        { tanggal: "2026-04-10", sumber: "Uang Saku", jumlah: 20000 },
+        { tanggal: "2026-04-11", sumber: "Jualan", jumlah: 50000 }
+    ];
+    localStorage.setItem('yoyo_pemasukan', JSON.stringify(contohPemasukan));
+}
+if(!localStorage.getItem('yoyo_pengeluaran')) {
+    const contohPengeluaran = [
+        { tanggal: "2026-04-10", keperluan: "Jajan", jumlah: 10000 },
+        { tanggal: "2026-04-11", keperluan: "Pulsa", jumlah: 15000 }
+    ];
+    localStorage.setItem('yoyo_pengeluaran', JSON.stringify(contohPengeluaran));
+}
