@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Pemasukan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="data-body">
+    <div class="container data-container">
+        <div class="header-nav">
+            <a href="index.html">🏠 Beranda</a>
+            <a href="tentang-akuntansi.html">📖 Tentang</a>
+            <a href="data-pemasukan.html">💚 Pemasukan</a>
+            <a href="data-pengeluaran.html">❤️ Pengeluaran</a>
+            <a href="laporan.html">📊 Laporan</a>
+            <a href="kontak.html">📞 Kontak</a>
+            <a href="menu.html">🔧 Menu Tools</a>
+        </div>
+
+        <h1>💚 Data Pemasukan</h1>
+        <div class="form-tambah">
+            <h3>Tambah Pemasukan Baru</h3>
+            <div class="form-row">
+                <input type="date" id="tglMasuk" placeholder="Tanggal">
+                <input type="text" id="sumberMasuk" placeholder="Sumber pemasukan (contoh: Uang Saku, Gaji, Jualan)">
+                <input type="number" id="jumlahMasuk" placeholder="Jumlah (Rp)">
+                <button id="btnTambahMasuk" class="btn-tambah">➕ Tambah</button>
+            </div>
+        </div>
+
+        <div class="tabel-wrapper">
+            <table class="tabel-data">
+                <thead>
+                    <tr><th>Tanggal</th><th>Sumber Pemasukan</th><th>Jumlah (Rp)</th><th>Aksi</th></tr>
+                </thead>
+                <tbody id="tabelPemasukan"></tbody>
+            </table>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        let pemasukan = JSON.parse(localStorage.getItem('yoyo_pemasukan')) || [];
+
+        function renderPemasukan() {
+            const tbody = document.getElementById('tabelPemasukan');
+            if(pemasukan.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center">Belum ada data pemasukan.</td></tr>';
+                return;
+            }
+            tbody.innerHTML = pemasukan.map((item, idx) => `
+                <tr>
+                    <td>${item.tanggal}</td>
+                    <td>${item.sumber}</td>
+                    <td>${formatRupiah(item.jumlah)}</td>
+                    <td><button class="btn-hapus" data-idx="${idx}">Hapus</button></td>
+                </tr>
+            `).join('');
+            // event hapus
+            document.querySelectorAll('.btn-hapus').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const idx = btn.getAttribute('data-idx');
+                    pemasukan.splice(idx, 1);
+                    localStorage.setItem('yoyo_pemasukan', JSON.stringify(pemasukan));
+                    renderPemasukan();
+                });
+            });
+        }
+
+        document.getElementById('btnTambahMasuk').addEventListener('click', () => {
+            const tanggal = document.getElementById('tglMasuk').value;
+            const sumber = document.getElementById('sumberMasuk').value.trim();
+            const jumlah = parseFloat(document.getElementById('jumlahMasuk').value);
+            if(!tanggal || !sumber || isNaN(jumlah) || jumlah <= 0) {
+                alert("Lengkapi semua data (tanggal, sumber, jumlah > 0)");
+                return;
+            }
+            pemasukan.push({ tanggal, sumber, jumlah });
+            localStorage.setItem('yoyo_pemasukan', JSON.stringify(pemasukan));
+            document.getElementById('tglMasuk').value = '';
+            document.getElementById('sumberMasuk').value = '';
+            document.getElementById('jumlahMasuk').value = '';
+            renderPemasukan();
+        });
+
+        renderPemasukan();
+    </script>
+</body>
+</html>
